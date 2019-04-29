@@ -2,6 +2,10 @@
 
 namespace DotNetCoreWebApiTests.Data
 {
+    /// <summary>
+    /// Article utile pour la mise en place d'EF Core avec un projet .net core
+    /// https://www.supinfo.com/articles/single/7180-utilisation-entity-framework-core-avec-sql-server-net-core
+    /// </summary>
     public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
     {
         private string connectionString;
