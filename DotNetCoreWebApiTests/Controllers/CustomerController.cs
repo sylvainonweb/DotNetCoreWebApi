@@ -11,17 +11,28 @@ namespace DotNetCoreWebApiTests.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly DatabaseContext databaseContext;
+
+        public CustomerController(DatabaseContext databaseContext)
+        {
+            this.databaseContext = databaseContext;
+        }
+
         // GET api/customer
         [HttpGet]
         public ActionResult<IEnumerable<Customer>> Get()
         {
-            IList<Customer> customers = new List<Customer>();
-            for(int i = 1; i <= 10; i++)
-            {
-                customers.Add(new Customer { Id = i, LastName = "Nom " + i, FirstName = "Prénom " + i });
-            }
+            return this.databaseContext.Customers.ToList();
 
-            return customers.ToArray();
+
+            //IList<Customer> customers = new List<Customer>();
+            //for(int i = 1; i <= 10; i++)
+            //{
+            //    customers.Add(new Customer { Id = i, LastName = "Nom " + i, FirstName = "Prénom " + i });
+            //}
+
+            //return customers.ToArray();
         }
+        
     }
 }
