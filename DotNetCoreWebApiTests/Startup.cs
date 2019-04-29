@@ -31,6 +31,11 @@ namespace DotNetCoreWebApiTests
             services.AddControllers()
                 .AddNewtonsoftJson();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+
             services.AddDbContext<DatabaseContext>(
                 options => options.UseSqlServer(Configuration["Data:ConnectionString"]));
         }
@@ -53,7 +58,14 @@ namespace DotNetCoreWebApiTests
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // AJOUT SBD
             app.UseMiddleware<LoggingMiddleware>();
+            app.UseSwagger(); // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
+            }); // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
 
             app.UseEndpoints(endpoints =>
             {
