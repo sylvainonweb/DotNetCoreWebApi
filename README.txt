@@ -1,0 +1,3 @@
+        La commande suivante (génération des entités à partir de la base) ne fonctionne plus (https://github.com/aspnet/EntityFrameworkCore/issues/15414)
+        et sera normalement corrigé dans la Preview 5 (livraison ???)
+        Scaffold - DbContext "Server=SBLANCHARD01\SQLEXPRESS_2016;Database=WebTestsDatabase;persist security info=True;user id=sa; password=**DLMSOFT2005" Microsoft.EntityFrameworkCore.SqlServer -Context DatabaseContext -OutputDir Data
