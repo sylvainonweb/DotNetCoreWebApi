@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DotNetCoreWebApiTests.Shared;
+using Microsoft.EntityFrameworkCore;
 
-namespace DotNetCoreWebApiTests.Data
+namespace DotNetCoreWebApiTests.Database
 {
     /// <summary>
     /// Article utile pour la mise en place d'EF Core avec un projet .net core
@@ -8,19 +9,17 @@ namespace DotNetCoreWebApiTests.Data
     /// </summary>
     public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        private string connectionString;
-
+        public string ConnectionString { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerType> CustomerTypes { get; set; }
 
-        public DatabaseContext(string connectionString) : base()
+        public DatabaseContext() : base()
         {
-            this.connectionString = connectionString;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(this.connectionString);
+            optionsBuilder.UseSqlServer(this.ConnectionString);
 
             // La commande suivante (génération des entités à partir de la base) ne fonctionne plus (https://github.com/aspnet/EntityFrameworkCore/issues/15414)
             // et sera normalement corrigé dans la Preview 5 (livraison ???)

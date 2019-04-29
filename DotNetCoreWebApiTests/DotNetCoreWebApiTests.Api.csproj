@@ -18,4 +18,8 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0-preview4.19212.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetCoreWebApiTests.Shared\DotNetCoreWebApiTests.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
